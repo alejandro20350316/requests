@@ -14,6 +14,21 @@ app.get('/', (req, res) =>{
  res.json({msg: 'Fallo el usuario o contraseña'})
 })
 
+//http://localhost:3000/login?user=Alejandro&password=123
+app.get('/login', (req, res) => {
+    const {user, password} = req.query
+    if (!user || !password){
+        res.json({msg: 'You need to provide <user> and <password> params'})
+    }
+    
+if(user === 'Alejandro' && password === '123'){
+    res.json({msg: 'Sing In succesfull'})
+    return
+}
+res.status(404).json({msg: 'wrong user or password'})
+})
+
+
 app.post('/', (request, response) =>{
     response.json("Hola POST")
 })
